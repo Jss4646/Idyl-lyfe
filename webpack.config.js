@@ -15,8 +15,7 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
-        exclude: /node_modules/,
-        use: [],
+        use: ['source-map-loader'],
       }, {
         test: /\.scss$/,
         exclude: /node_modules/,
@@ -30,6 +29,7 @@ module.exports = {
       },
     ],
   },
+  devtool: 'eval-source-map',
   devServer: {
     static: { directory: path.join(__dirname, 'public'), watch: true },
     client: {
