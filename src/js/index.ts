@@ -1,4 +1,5 @@
 import * as PIXI from 'pixi.js';
+import img from '../imgs/cat.jpg';
 
 const options = {
   width: window.innerWidth,

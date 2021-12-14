@@ -5,7 +5,7 @@ const options = {};
 
 module.exports = {
   plugins: [new ESLintPlugin(options)],
-  entry: ['./src/js/index.js', './src/scss/index.scss'],
+  entry: ['./src/js/index.ts', './src/scss/index.scss'],
   output: {
     filename: './js/main.js',
     path: path.resolve(__dirname, './public/dist'),
@@ -16,9 +16,12 @@ module.exports = {
       {
         test: /\.js$/,
         use: ['source-map-loader'],
+      },
+      {
+        test: /\.tsx$/,
+        use: ['ts-loader'],
       }, {
         test: /\.scss$/,
-        exclude: /node_modules/,
         use: [
           {
             loader: 'file-loader',
@@ -27,7 +30,18 @@ module.exports = {
           'sass-loader',
         ],
       },
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: 'asset/resource',
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/i,
+        type: 'asset/resource',
+      },
     ],
+  },
+  resolve: {
+    extensions: ['.tsx', '.ts', '.js'],
   },
   devtool: 'eval-source-map',
   devServer: {
