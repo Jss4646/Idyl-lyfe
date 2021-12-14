@@ -1,5 +1,9 @@
 import * as PIXI from 'pixi.js';
-import img from '../imgs/cat.jpg';
+
+import { createSprite } from './helpers';
+import catImage from '../imgs/cat.jpg';
+
+console.log(typeof catImage);
 
 const options = {
   width: window.innerWidth,
@@ -8,3 +12,8 @@ const options = {
 };
 const app = new PIXI.Application(options);
 document.body.appendChild(app.view);
+
+const sprite = createSprite(catImage);
+sprite.scale.set(0.1, 0.1);
+
+app.stage.addChild(sprite);
