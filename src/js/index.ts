@@ -1,19 +1,25 @@
-import * as PIXI from 'pixi.js';
+import {
+  Application, utils, Loader, Sprite,
+} from 'pixi.js';
 
-import { createSprite } from './helpers';
-import catImage from '../imgs/cat.jpg';
+import img from '../imgs/cat.jpg';
 
-console.log(typeof catImage);
+console.log(img);
 
 const options = {
   width: window.innerWidth,
   height: window.innerHeight,
   antialias: true,
 };
-const app = new PIXI.Application(options);
+const app = new Application(options);
 document.body.appendChild(app.view);
+const { TextureCache } = utils;
 
-const sprite = createSprite(catImage);
-sprite.scale.set(0.1, 0.1);
+Loader.shared.add('cat', img).load(() => {
+  console.log(TextureCache);
+  const cat = new Sprite(Loader.shared.resources.cat.texture);
 
-app.stage.addChild(sprite);
+  cat.scale.set(0.1, 0.1);
+
+  app.stage.addChild(cat);
+});

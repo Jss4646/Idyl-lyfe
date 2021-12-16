@@ -5,11 +5,11 @@ const CopyPlugin = require('copy-webpack-plugin');
 const options = {};
 
 module.exports = {
-  plugins: [new ESLintPlugin(options), new CopyPlugin({ patterns: [{ from: 'src/imgs', to: 'imgs' }] })],
+  plugins: [new ESLintPlugin(options), new CopyPlugin({ patterns: [{ from: 'src/index.html', to: 'index.html' }] })],
   entry: ['./src/js/index.ts', './src/scss/index.scss'],
   output: {
     filename: './js/main.js',
-    path: path.resolve(__dirname, './public/assets'),
+    path: path.resolve(__dirname, './public'),
     publicPath: '/public/',
     clean: true,
   },
@@ -56,7 +56,7 @@ module.exports = {
   },
   devtool: 'eval-source-map',
   devServer: {
-    static: [{ directory: path.join(__dirname, 'public'), watch: true }, { directory: path.join(__dirname, 'public/assets/imgs'), publicPath: '/imgs' }],
+    static: [{ directory: path.join(__dirname, 'public'), watch: true, publicPath: '/' }],
     client: {
       logging: 'none',
       overlay: { errors: true, warnings: false },
