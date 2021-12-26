@@ -16,6 +16,7 @@ module.exports = {
     'no-unused-vars': 'warn',
     'import/extensions': 'off',
     'import/no-unresolved': 'off',
+    'lines-between-class-members': 'off',
   },
   parser: '@typescript-eslint/parser',
   plugins: [
